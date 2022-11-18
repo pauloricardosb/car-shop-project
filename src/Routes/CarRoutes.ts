@@ -1,8 +1,9 @@
 import { Router } from 'express';
-import { CarController } from '../Controllers/CarController';
+import CarController from '../Controllers/CarController';
 
 const car = Router();
 
-car.post('/', CarController.create());
+car.post('/', (req, res) =>
+  new CarController(req, res).create());
 
 export default car;
