@@ -11,19 +11,19 @@ export default class CarService {
     return null;
   }
 
-  public async create(car: ICar) {
+  public async createCar(car: ICar) {
     const carSchema = new CarSchema();
     const newCar = await carSchema.create(car);
     return this.createCarDomain(newCar);
   }
 
-  public async index() {
+  public async findAllCars() {
     const carSchema = new CarSchema();
     const cars = await carSchema.find();
     return cars.map((car: ICar) => this.createCarDomain(car));
   }
 
-  public async show(id: string) {
+  public async findCarsById(id: string) {
     const carSchema = new CarSchema();
     const car = await carSchema.findById(id);
     return this.createCarDomain(car);

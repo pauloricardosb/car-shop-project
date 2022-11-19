@@ -13,7 +13,7 @@ export default class CarController {
     this.service = new CarService();
   }
 
-  public async create() {
+  public async createCar() {
     const car: ICar = {
       model: this.req.body.model,
       year: this.req.body.year,
@@ -24,17 +24,27 @@ export default class CarController {
       seatsQty: this.req.body.seatsQty,
     };
 
-    const newCar = await this.service.create(car);
+    const newCar = await this.service.createCar(car);
     return this.res.status(201).json(newCar);
   }
 
-  public async index() {
-    const cars = await this.service.index();
+  public async findAllCars() {
+    const cars = await this.service.findAllCars();
+    
+    if (!cars) {  
+      return this.res.status(404).json({ message: 'Car not found' });
+    }
+
     return this.res.status(200).json(cars);
   }
 
-  public async show() {
-    const car = await this.service.show(this.req.params.id);
+  public async findCarsById() {
+    const { id } = this.req.params;
+    const car = await this.service.findCarsById(id);
+
+    if (!id) {
+      return this.res.status(422).json('Invalid mongo id');
+    }
     return this.res.status(200).json(car);
   }
 }

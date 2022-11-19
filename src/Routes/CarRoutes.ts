@@ -4,12 +4,12 @@ import CarController from '../Controllers/CarController';
 const car = Router();
 
 car.post('/', (req, res) =>
-  new CarController(req, res).create());
+  new CarController(req, res).createCar());
 
 car.get('/', (req, res) => 
-  new CarController(req, res).index());
+  new CarController(req, res).findAllCars());
 
 car.get('/:id', (req, res) =>
-  new CarController(req, res).show());
-  
+  new CarController(req, res).findCarsById());
+
 export default car;
