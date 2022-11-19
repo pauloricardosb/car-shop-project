@@ -23,7 +23,7 @@ export default class CarService {
     return cars.map((car: ICar) => this.createCarDomain(car));
   }
 
-  public async findCarsById(id: string) {
+  public async findById(id: string) {
     const carSchema = new CarSchema();
     const car = await carSchema.findById(id);
     return this.createCarDomain(car);

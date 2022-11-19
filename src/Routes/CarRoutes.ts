@@ -10,6 +10,6 @@ car.get('/', (req, res) =>
   new CarController(req, res).findAllCars());
 
 car.get('/:id', (req, res) =>
-  new CarController(req, res).findCarsById());
+  new CarController(req, res).findById());
 
 export default car;

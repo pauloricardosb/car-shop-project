@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { isValidObjectId } from 'mongoose';
 import ICar from '../Interfaces/ICar';
 import CarService from '../Services/CarService';
 
@@ -29,22 +30,36 @@ export default class CarController {
   }
 
   public async findAllCars() {
-    const cars = await this.service.findAllCars();
-    
-    if (!cars) {  
-      return this.res.status(404).json({ message: 'Car not found' });
-    }
+    try {
+      const cars = await this.service.findAllCars();
 
-    return this.res.status(200).json(cars);
+      if (cars.length === 0) {
+        return this.res.status(404).json({ message: 'Car not found' });
+      }
+
+      return this.res.status(200).json(cars);
+    } catch (err) {
+      return this.res.status(500).json({ message: 'Internal Error' });
+    }
   }
 
-  public async findCarsById() {
+  public async findById() {
     const { id } = this.req.params;
-    const car = await this.service.findCarsById(id);
 
-    if (!id) {
-      return this.res.status(422).json('Invalid mongo id');
+    try {
+      if (!isValidObjectId(id)) {
+        return this.res.status(422).json({ message: 'Invalid mongo id' });
+      }
+
+      const car = await this.service.findById(id);
+
+      if (!car) {
+        return this.res.status(404).json({ message: 'Car not found' });
+      }
+
+      return this.res.status(200).json(car);
+    } catch {
+      return this.res.status(500).json({ message: 'Internal Error' });
     }
-    return this.res.status(200).json(car);
   }
 }
