@@ -27,4 +27,14 @@ export default class CarController {
     const newCar = await this.service.create(car);
     return this.res.status(201).json(newCar);
   }
+
+  public async index() {
+    const cars = await this.service.index();
+    return this.res.status(200).json(cars);
+  }
+
+  public async show() {
+    const car = await this.service.show(this.req.params.id);
+    return this.res.status(200).json(car);
+  }
 }

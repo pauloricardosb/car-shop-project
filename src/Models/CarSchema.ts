@@ -19,4 +19,12 @@ export default class CarSchema extends GeneralShema<ICar> {
   public async create(obj: ICar): Promise<ICar> {
     return this.model.create({ ...obj });
   }
+
+  public async find(): Promise<ICar[]> {
+    return this.model.find();
+  }
+
+  public async findById(id: string): Promise<ICar | null> {
+    return this.model.findById(id);
+  }
 }
