@@ -62,4 +62,11 @@ export default class CarController {
       return this.res.status(500).json({ message: 'Internal Error' });
     }
   }
+
+  public async updateCar() {
+    const { id } = this.req.params;
+
+    const updatedCar = await this.service.updateCar(id, this.req.body);
+    return this.res.status(200).json(updatedCar);
+  }
 }

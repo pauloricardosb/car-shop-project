@@ -27,4 +27,8 @@ export default class CarSchema extends GeneralShema<ICar> {
   public async findById(id: string): Promise<ICar | null> {
     return this.model.findById(id);
   }
+
+  public async findByIdAndUpdate(id: string, obj: ICar): Promise<ICar | null> {
+    return this.model.findByIdAndUpdate(id, obj, { new: true });
+  }
 }

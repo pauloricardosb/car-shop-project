@@ -12,4 +12,7 @@ car.get('/', (req, res) =>
 car.get('/:id', (req, res) =>
   new CarController(req, res).findById());
 
+car.put('/:id', (req, res) =>
+  new CarController(req, res).updateCar());
+
 export default car;
