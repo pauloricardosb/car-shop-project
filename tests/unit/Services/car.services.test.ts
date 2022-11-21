@@ -7,7 +7,6 @@ import ErrorMock from '../../../src/Helpers/ErrorMock';
 
 describe('Testa a camada Services de Cars', function () {
   const carServices = new CarServices();
-  afterEach(sinon.restore);
 
   describe('findAllCars', function () {
     afterEach(sinon.restore);
@@ -48,8 +47,6 @@ describe('Testa a camada Services de Cars', function () {
   });
 
   describe('Create', function () {
-    afterEach(sinon.restore);
-
     it('Se retorna um documento criado', async function () {
       sinon.stub(Mongoose.Model, 'create').resolves(mocks.carCreated);
       const newCar = await carServices.createCar(mocks.newCar);
