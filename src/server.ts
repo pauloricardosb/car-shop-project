@@ -5,7 +5,7 @@ import connectToDatabase from './Models/Connection';
 const PORT = process.env.PORT || 3001;
 connectToDatabase()
   .then(() => {
-    app.listen(PORT, () => console.log(`Running server on port: ${PORT}`));
+    app.listen(PORT, () => (`Running server on port: ${PORT}`));
   })
   .catch((error) => {
     error(error);
