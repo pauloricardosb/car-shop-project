@@ -53,4 +53,15 @@ const carCreated = {
   seatsQty: 4,
 };
 
-export default { allCars, carById, carCreated, newCar };
+const carUpdated = {
+  id: '637a80b19c020ca835a266a7',
+  model: 'Fiat Uno',
+  year: 2012,
+  color: 'Preta',
+  status: true,
+  buyValue: 5.800,
+  doorsQty: 2,
+  seatsQty: 4,
+};
+
+export default { allCars, carById, carCreated, newCar, carUpdated };

@@ -53,4 +53,31 @@ describe('Testa a camada Services de Cars', function () {
       expect(newCar).to.be.deep.equal(mocks.carCreated);
     });
   });
+
+  describe('Update', function () {
+    afterEach(sinon.restore);
+
+    it('Se retorna um documento atualizado', async function () {
+      sinon
+        .stub(Mongoose.Model, 'findByIdAndUpdate')
+        .resolves(mocks.carUpdated);
+
+      const updatedCar = await carServices
+        .updateCar(mocks.carUpdated.id, mocks.carUpdated);
+        
+      expect(updatedCar).to.be.deep.equal(mocks.carUpdated);
+    });
+
+    it('Se retorna erro ao não encontrar nenhum documento', async function () {
+      sinon.stub(Mongoose.Model, 'findByIdAndUpdate').resolves(null);
+
+      try {
+        await carServices.updateCar('6376daa4d88bd2bf7da9c931', mocks.carUpdated);
+      } catch (error) {
+        expect(error).to.be.an.instanceof(ErrorMock);
+        expect((error as ErrorMock).status).to.be.equal(404);
+        expect((error as ErrorMock).message).to.be.equal('Car not found');
+      }
+    });
+  });
 });
