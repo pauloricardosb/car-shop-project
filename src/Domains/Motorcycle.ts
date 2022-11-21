@@ -7,8 +7,8 @@ export default class Motorcycle {
   protected color: string;
   protected status: boolean;
   protected buyValue: number;
-  protected category: string;
-  protected engineCapacity: number;
+  private category: string;
+  private engineCapacity: number;
 
   constructor(obj: IMotorcycle) {
     this.id = obj.id;

@@ -1,8 +1,8 @@
 import { Schema } from 'mongoose';
 import IMotorcycle from '../Interfaces/IMotorcycle';
-import GeneralShema from './GeneralSchema';
+import AbstractODM from './AbstractODM';
 
-export default class MotorcycleSchema extends GeneralShema<IMotorcycle> {
+export default class MotorcycleSchema extends AbstractODM<IMotorcycle> {
   constructor() {
     const schema = new Schema<IMotorcycle>({
       model: { type: String, required: true },
@@ -14,21 +14,5 @@ export default class MotorcycleSchema extends GeneralShema<IMotorcycle> {
       engineCapacity: { type: Number, required: true },
     });
     super(schema, 'Motorcycle');
-  }
-
-  public async create(obj: IMotorcycle): Promise<IMotorcycle> {
-    return this.model.create({ ...obj });
-  }
-
-  public async find(): Promise<IMotorcycle[]> {
-    return this.model.find({});
-  }
-
-  public async findById(id: string): Promise<IMotorcycle | null> {
-    return this.model.findById(id);
-  }
-
-  public async findByIdAndUpdate(id: string, obj: IMotorcycle): Promise<IMotorcycle | null> {
-    return this.model.findByIdAndUpdate(id, obj as IMotorcycle, { new: true });
   }
 }

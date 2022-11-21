@@ -1,8 +1,8 @@
 import { Schema } from 'mongoose';
 import ICar from '../Interfaces/ICar';
-import GeneralShema from './GeneralSchema';
+import AbstractODM from './AbstractODM';
 
-export default class CarSchema extends GeneralShema<ICar> {
+export default class CarSchema extends AbstractODM<ICar> {
   constructor() {
     const schema = new Schema<ICar>({
       model: { type: String, required: true },
@@ -14,21 +14,5 @@ export default class CarSchema extends GeneralShema<ICar> {
       seatsQty: { type: Number, required: true },
     });
     super(schema, 'Car');
-  }
-
-  public async create(obj: ICar): Promise<ICar> {
-    return this.model.create({ ...obj });
-  }
-
-  public async find(): Promise<ICar[]> {
-    return this.model.find({});
-  }
-
-  public async findById(id: string): Promise<ICar | null> {
-    return this.model.findById(id);
-  }
-
-  public async findByIdAndUpdate(id: string, obj: ICar): Promise<ICar | null> {
-    return this.model.findByIdAndUpdate(id, obj, { new: true });
   }
 }
