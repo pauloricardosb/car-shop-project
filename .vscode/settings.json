@@ -1,0 +1,25 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/.gitkeep": true,
+    ".vscode": true,
+    "node_modules": true,
+    "coverage": true,
+    ".nyc_output": true,
+    "tsconfig.json": true,
+    "package.json": true,
+    "package-lock.json": true,
+    "jest.config.js": true,
+    "jest.d.ts": true,
+    ".gitignore": true,
+    ".eslintrc.json": true,
+    ".eslintignore": true,
+    ".env.example": true
+  },
+  "explorerExclude.backup": {}
+}
