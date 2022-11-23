@@ -19,7 +19,8 @@
     ".gitignore": true,
     ".eslintrc.json": true,
     ".eslintignore": true,
-    ".env.example": true
+    ".env.example": true,
+    "nyc.config.js": true
   },
   "explorerExclude.backup": {}
 }
